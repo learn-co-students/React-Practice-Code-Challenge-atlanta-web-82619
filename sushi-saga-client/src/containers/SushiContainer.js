@@ -11,14 +11,20 @@ class SushiContainer extends React.Component  {
     }
   }
 
-
-
   moveForward = () => {
     this.setState((state) => {
-      return {
-        start : state.start + 4,
-        end : state.end + 4
-      }
+       if (state.end === 100) {
+         return {
+           start : 0,
+           end : 4
+         }
+       } else {
+        return {
+          start : state.start + 4,
+          end : state.end + 4
+        }
+       }
+
     })
   }
 
@@ -28,7 +34,7 @@ class SushiContainer extends React.Component  {
         <div className="belt">
           {
             this.props.sushi.slice(this.state.start,this.state.end).map(s => (
-              <Sushi key={s.id} sushi={s} budget={this.props.budget} buySushi={this.props.buySushi} />
+              <Sushi key={s.id} sushi={s} budget={this.props.budget} buySushi={this.props.buySushi} eatenSushi={this.props.eatenSushi}/>
             ))
           }
           <MoreButton moveForward={this.moveForward} />
