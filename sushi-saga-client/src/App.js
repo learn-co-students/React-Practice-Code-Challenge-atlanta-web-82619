@@ -11,8 +11,7 @@ class App extends Component {
       sushis: [],
       sushiRotation: [],
       userBalance: 100,
-      eatenSushi: [],
-      input: ''
+      eatenSushi: []
     }
   }
 
@@ -52,26 +51,12 @@ class App extends Component {
     }
   }
 
-  changeHandler = (e) => {
-    this.setState({
-        input: e.target.value
-    })
-  }
-
-  submitButtonHandler = (e) => {
+  submitButtonHandler = (e, amount) => {
     e.preventDefault()
 
     this.setState({
-      input: ''
+      userBalance: (this.state.userBalance + parseInt(amount))
     })
-
-    if (parseInt(this.state.input)) {
-      this.setState({
-        userBalance: (this.state.userBalance + parseInt(this.state.input))
-      })
-    } else {
-      alert('Input must be a number without decimals')
-    }
   }
 
   render() {

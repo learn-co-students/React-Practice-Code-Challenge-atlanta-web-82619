@@ -1,12 +1,29 @@
 import React, {Component} from 'react'
 
 class Form extends Component {
+    constructor() {
+        super()
+        this.state = {
+            amount: 0
+        }
+    }
+
+    changeHandler = (e) => {
+        this.setState({
+            amount: e.target.value
+        })
+      }
+
     render() {
         return (
-            <form onSubmit={(e) => this.props.submitButtonHandler(e)} >
+            <form onSubmit={(e) => this.props.submitButtonHandler(e, this.state.amount)} >
                 <label>Add Money: </label>
-                <input onChange={this.props.changeHandler} value={this.props.inputValue} placeholder="$$$"></input>
-                <button value="submit">Deposit</button>
+                <input 
+                    type='number' 
+                    onChange={this.changeHandler} 
+                    placeholder="$$$">
+                </input>
+                <button value="submit">Confirm</button>
             </form>
         )
     }
